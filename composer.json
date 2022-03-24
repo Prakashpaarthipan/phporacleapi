@@ -1,0 +1,21 @@
+{
+    "name": "devspider/phporacleapi",
+    "description": "Simple OCI based php library with query builder",
+    "license": "mit",
+    "autoload": {
+        "psr-4": {
+            "Devspider\\Phporacleapi\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Paarthipan Prakash",
+            "email": "prakashkovaidt@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "phpunit/phpunit": "10.0.x-dev",
+        "vlucas/phpdotenv": "5.4.x-dev"
+    }
+}
