@@ -15,7 +15,10 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "phpunit/phpunit": "10.0.x-dev",
         "vlucas/phpdotenv": "5.4.x-dev"
+    },
+    "config": {
+
+        "platform-check": false
     }
 }
