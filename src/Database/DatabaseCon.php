@@ -1,18 +1,24 @@
 <?php
 namespace Devspider\Phporacleapi\Database;
 
+
 class DatabaseCon
 {
-    private $HOST = 'localhost';
+    private $HOST = '';
+    private $USER = '';
+    private $PASSWORD = '';
     function __construct()
     {
-       
+        $this->HOST = $_ENV['TESTHOST'];
+        $this->USER = $_ENV['TESTUSERNAME'];
+        $this->PASSWORD = $_ENV['TESTPASSWORD'];
       
-        $conn = oci_connect($this->user, $this->password, $this->host);
+        $conn = oci_connect($this->USER, $this->PASSWORD, $this->HOST);
         if (!$conn) {
             die("Database Connection Failed....");
         }
         $this->conn = $conn;
+        var_dump($this->conn);
     }
     /*function select($strSQL)
     {
@@ -56,6 +62,3 @@ class DatabaseCon
         return 'Oracle 11g';
     }*/
 }
-
-$a = new DatabaseCon();
-var_dump($a);
