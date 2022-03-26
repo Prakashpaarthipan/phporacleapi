@@ -23,3 +23,4 @@ class Api
 }
 
 $a = new Api();
+var_dump($a);
