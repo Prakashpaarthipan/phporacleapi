@@ -20,7 +20,7 @@ class DatabaseCon
         $this->conn = $conn;
         var_dump($this->conn);
     }
-    /*function select($strSQL)
+    function select($strSQL)
     {
         $result = array();
         $objParse = oci_parse($this->conn, $strSQL);
@@ -60,5 +60,5 @@ class DatabaseCon
     public static function getOracleVer()
     {
         return 'Oracle 11g';
-    }*/
+    }
 }
