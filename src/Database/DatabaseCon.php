@@ -15,7 +15,7 @@ class DatabaseCon
       
         $conn = oci_connect($this->USER, $this->PASSWORD, $this->HOST);
         if (!$conn) {
-            die("Database Connection Failed....");
+            die("Database Connection Failed. .");
         }
         $this->conn = $conn;
         var_dump($this->conn);
