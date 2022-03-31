@@ -1,30 +1,32 @@
 <?php
 namespace Devspider\Phporacleapi\Database;
 
-
 class DatabaseCon
 {
     private $HOST = '';
     private $USER = '';
     private $PASSWORD = '';
+    private $conn='' ;
     function __construct()
     {
         $this->HOST = $_ENV['TESTHOST'];
         $this->USER = $_ENV['TESTUSERNAME'];
         $this->PASSWORD = $_ENV['TESTPASSWORD'];
-      
-        $conn = oci_connect($this->USER, $this->PASSWORD, $this->HOST);
-        if (!$conn) {
-            die("Database Connection Failed. .");
+        
+        $connection = @oci_connect($this->USER, $this->PASSWORD, $this->HOST);
+                
+        if (!$connection) {
+            $e = oci_error();
+            trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
         }
-        $this->conn = $conn;
-        var_dump($this->conn);
+        $this->conn = $connection;
+        
     }
     function select($strSQL)
     {
         $result = array();
         $objParse = oci_parse($this->conn, $strSQL);
-        $objExecute = oci_execute($objParse, OCI_DEFAULT);
+        $objExecute = oci_execute($objParse, OCI_ASSOC+OCI_RETURN_NULLS);
         while (($row1 = oci_fetch_assoc($objParse)) != false) {
             $result[] = $row1;
         }
@@ -33,7 +35,7 @@ class DatabaseCon
     function execute($strSQL)
     {
         $objParse = oci_parse($this->conn, $strSQL);
-        $objExecute = oci_execute($objParse, OCI_DEFAULT);
+        $objExecute = oci_execute($objParse, OCI_ASSOC+OCI_RETURN_NULLS);
         if ($objExecute) {
             return true;
         } else {
@@ -57,8 +59,14 @@ class DatabaseCon
     {
         oci_close($this->conn);
     }
-    public static function getOracleVer()
+    public  function getOracleServerVer()
     {
-        return 'Oracle 11g';
+        return oci_server_version($this->conn);
     }
+    public  function getOracleClientVer()
+    {
+        return oci_client_version();
+    }
+    
+    
 }

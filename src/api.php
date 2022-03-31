@@ -16,11 +16,20 @@ class Api
     protected $db;
     function __construct()
     {
-        
          $this->db = new DatabaseCon();
-        // var_dump($this->db);
+    }
+    function getServerVer(){
+
+        return $this->db->getOracleServerVer();
+    }
+    function getClientVer(){
+
+        return $this->db->getOracleClientVer();
+    }
+    function selectQuery($str){
+        return $this->db->select($str);
     }
 }
 
 $a = new Api();
-var_dump($a);
+echo $a->getClientVer();
