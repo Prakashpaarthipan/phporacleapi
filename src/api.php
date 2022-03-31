@@ -31,5 +31,7 @@ class Api
     }
 }
 
-$a = new Api();
-echo $a->getClientVer();
+// $a = new Api();
+// $result = $a->selectQuery('select * from employee_personal where rownum<2');
+// echo "<pre>";
+// print_r($result);

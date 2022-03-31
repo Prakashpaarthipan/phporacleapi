@@ -26,8 +26,8 @@ class DatabaseCon
     {
         $result = array();
         $objParse = oci_parse($this->conn, $strSQL);
-        $objExecute = oci_execute($objParse, OCI_ASSOC+OCI_RETURN_NULLS);
-        while (($row1 = oci_fetch_assoc($objParse)) != false) {
+        $objExecute = oci_execute($objParse, OCI_DEFAULT);
+        while (($row1 = oci_fetch_array($objParse,OCI_ASSOC+OCI_RETURN_LOBS)) != false) {
             $result[] = $row1;
         }
         return $result;
@@ -35,7 +35,7 @@ class DatabaseCon
     function execute($strSQL)
     {
         $objParse = oci_parse($this->conn, $strSQL);
-        $objExecute = oci_execute($objParse, OCI_ASSOC+OCI_RETURN_NULLS);
+        $objExecute = oci_execute($objParse, OCI_DEFAULT);
         if ($objExecute) {
             return true;
         } else {
