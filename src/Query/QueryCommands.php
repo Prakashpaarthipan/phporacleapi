@@ -1,5 +1,9 @@
 <?php
-class QueryCommands{
+namespace Devspider\Phporacleapi\Query\QueryCommands;
+
+use Devspider\Phporacleapi\Database\DatabaseCon;
+
+class QueryCommands extends DatabaseCon{
 
     function insert_query($field_values, $tbl_names)
         {
@@ -30,7 +34,7 @@ class QueryCommands{
                 $kvl = rtrim($kvl, ", ");
 
                 $sql_insert ="insert into ".$tbl_names." (".$kvl.") values (".$kyvl.")";
-                $save_query = save->db($sql_insert);
+                $save_query = parent::execute($sql_insert);
                 return $save_query;
             }
             catch(Exception $e) {
