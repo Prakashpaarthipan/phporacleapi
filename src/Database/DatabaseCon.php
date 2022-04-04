@@ -18,7 +18,7 @@ class DatabaseCon
             die("Database Connection Failed. .");
         }
         $this->conn = $conn;
-        var_dump($this->conn);
+       
     }
     /*function select($strSQL)
     {
